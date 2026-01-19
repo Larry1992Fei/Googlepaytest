@@ -1,8 +1,5 @@
 {
-  "rewrites": [
-    // 方案1：直接访问域名+cardpaytest.html 即可打开（推荐）
-    { "source": "/dropin_googlepay-TEST.html", "destination": "/dropin_googlepay-TEST.html" },
-    // 方案2（可选）：访问根域名自动跳转到cardpaytest.html（无需加后缀）
-   // { "source": "/", "destination": "/cardpaytest.html" }
+  "routes": [
+    { "src": "/dropin_googlepay-TEST.html", "dest": "/dropin_googlepay-TEST.html" }
   ]
 }
