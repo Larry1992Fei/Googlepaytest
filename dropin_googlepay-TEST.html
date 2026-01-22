@@ -82,19 +82,21 @@
       // Google Pay 事件监听
       googlePay.on('ready', () => {
         console.log('组件初始化完成');
-        alert('组件初始化成功！环境: ' + (isSandbox ? '测试环境' : '生产环境'));
+        
       });
 
       googlePay.on('load', (res = {}) => {
         const { code, msg } = res || {};
         if (code === "SUCCESS") {
           console.log('[merchant][load]success:', res);
+		  alert('组件加载成功！环境: ' + (isSandbox ? '测试环境' : '生产环境'));
         } else {
           console.log('[merchant][load]fail:', res);
+		  alert('组件加载失败！环境: ' + (isSandbox ? '测试环境' : '生产环境'));
         }
       });
 
-    <!-- 5、用户点击发起支付，检查是否可支付，并获取paymentToken -->
+    //5、用户点击发起支付，检查是否可支付，并获取paymentToken
       googlePay.on('payButtonClick', (res) => {
         googlePay.emit('setDisabled', true);
         googlePay.emit('canMakePayment')
@@ -107,8 +109,8 @@
               document.getElementById('tokenValue').textContent = paymentToken;
               document.getElementById('tokenDisplay').style.display = 'block';
               
-              // 这里需要自行请求服务端，实现服务端下单的操作
-              // 下单成功后，调用 googlePay.emit('paySuccess') 或 googlePay.emit('payFail')
+           // 调用PayerMax orderAndPay接口发起支付
+           // orderAndPay()
               
               googlePay.emit('setDisabled', false);
             } else {
